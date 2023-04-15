@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """
+  Unique id of the user that is auto-generated at the point of insertion.
+  """
+  id: String!
+
+  """Account name of the user"""
+  account_name: String!
+
+  """Account number of the user. It is unique"""
+  account_number: String!
+
+  """Bank code of the user"""
+  bank_code: String!
+
+  """
+  Flag that shows the user's status. It is true if the user has been verified else false
+  """
+  verified: Boolean!
+}
+
+type Query {
+  """
+  Get a user's name that is saved on the database or return from Paystack
+  """
+  getUserName(input: FindUserInput!): String!
+}
+
+"""An object that defines that expected input when getting a user's name"""
+input FindUserInput {
+  """User's account number"""
+  user_account_number: String!
+
+  """User's bank code"""
+  user_bank_code: String!
+}
+
+type Mutation {
+  validateAccountName(input: ValidateAccountInput!): User!
+}
+
+"""
+An object that defines the expected input when validating a user's name.
+"""
+input ValidateAccountInput {
+  """User's account number"""
+  user_account_number: String!
+
+  """User's bank code"""
+  user_bank_code: String!
+
+  """User's full name"""
+  user_account_name: String!
+}
